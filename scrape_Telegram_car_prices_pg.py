@@ -69,3 +69,7 @@ for date, car_info in matches:
 
 # Print the table
 print(table)
+
+
+
+

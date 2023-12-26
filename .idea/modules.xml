@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/web_scrapping_for_iran.iml" filepath="$PROJECT_DIR$/.idea/web_scrapping_for_iran.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/data_extraction.iml" filepath="$PROJECT_DIR$/.idea/data_extraction.iml" />
     </modules>
   </component>
 </project>
