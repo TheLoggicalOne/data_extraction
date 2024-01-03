@@ -66,3 +66,6 @@ print(table)
 # wtf = '📅'
 
 lines_of_draft = draft_contents.split('\n')
+
+
+# Question: Why are table titles misplaced? because farsi text directions?
