@@ -12,7 +12,7 @@ example_data_path = data_manager.get_path(base_dir=data_manager.RAW_DATA,
                                           data_file_base_name=example_data_file_name)
 
 # read the data
-with open(example_data_file_name, "r") as file:
+with open(example_data_path, "r") as file:
     draft_contents = file.read()
 
 with open(data_path, "r") as file:
