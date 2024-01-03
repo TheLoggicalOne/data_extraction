@@ -1,7 +1,6 @@
 import os
 import re
 from prettytable import PrettyTable
-
 import data_manager
 
 # set up path of files and folders
@@ -19,12 +18,13 @@ with open(data_path, "r") as file:
     data_contents = file.read()
 
 # scrapping for draft_content from
-# Define the pattern for extracting Jalaali dates and car details
 
-
+# Define the pattern for extracting Jalaali dates and all car info between to consecutive dates
 pattern = r'📅(.+?)\n([\s\S]*?)(?=\n📅|$)'
+# This re working depends on the fact that each Jalali dates has a '📅' marker and is in separate line
+# and  car prices info are between two  to separate lines
 
-# Extract Jalaali dates and car details from the text
+# Extract Jalaali dates and car prices info of each day from the text
 matches = re.findall(pattern, draft_contents)
 
 # Create a table
