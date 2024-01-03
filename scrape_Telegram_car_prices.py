@@ -1,23 +1,22 @@
 import os
 import re
 from prettytable import PrettyTable
-# set up path of files and folders
-Raw_Data = 'Raw_Data'
-data_file_name = 'Daily_Car_Price_Telegram.txt'
-draft_file_name = 'draft.txt'
-data_path = os.path.join(Raw_Data, data_file_name)
-draft_path = os.path.join(Raw_Data, draft_file_name)
 
+import data_manager
+
+# set up path of files and folders
+example_data_file_name = 'draft.txt'
+data_path = data_manager.get_path(base_dir=data_manager.RAW_DATA,
+                                  data_file_base_name=data_manager.DATA_FILE_BASE_NAME)
+example_data_path = data_manager.get_path(base_dir=data_manager.RAW_DATA,
+                                          data_file_base_name=example_data_file_name)
 
 # read the data
-with open(draft_path, "r") as file:
+with open(example_data_file_name, "r") as file:
     draft_contents = file.read()
 
-with open(draft_path, "r") as file:
+with open(data_path, "r") as file:
     data_contents = file.read()
-
-
-
 
 # scrapping for draft_content from
 # Define the pattern for extracting Jalaali dates and car details
@@ -31,6 +30,7 @@ matches = re.findall(pattern, draft_contents)
 # Create a table
 table = PrettyTable()
 table.field_names = ['Jalaali Date', 'Car Type', 'Car Price']
+
 
 # Helper function to convert Persian numbers to English numbers
 def convert_persian_numbers(text):
@@ -48,12 +48,12 @@ def convert_persian_numbers(text):
     }
     return ''.join(persian_to_english.get(char, char) for char in text)
 
+
 # Add rows to the table
 for date, car_info in matches:
     car_details = re.findall(r'(.+?)⬅️([\d۰۱۲۳۴۵۶۷۸۹,]+)', car_info)
     for car_type, car_price in car_details:
-
-        #uncomment/comment following two lines to convert persian to english numbers
+        # uncomment/comment following two lines to convert persian to english numbers
         # car_type = convert_persian_numbers(car_type.strip())
         car_type = car_type.strip()
 
@@ -63,8 +63,6 @@ for date, car_info in matches:
 # Print the table
 print(table)
 
-
 # wtf = '📅'
 
 lines_of_draft = draft_contents.split('\n')
-
