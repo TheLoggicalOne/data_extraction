@@ -44,8 +44,6 @@ def get_all_raw_text_of_daily_car_price_info(date_sign='📅', pattern=None, con
     return re.findall(pattern, content)
 
 
-
-
 def get_car_price_info_of_each_day(raw_text_of_daily_car_price_info=None, pattern=None, price_name_separator='⬅️'):
     if pattern is None:
         pattern = fr'(.+?){price_name_separator}([\d۰۱۲۳۴۵۶۷۸۹,]+)'
@@ -53,7 +51,17 @@ def get_car_price_info_of_each_day(raw_text_of_daily_car_price_info=None, patter
     return car_price_info
 
 
-list_of_raw_text_of_daily_car_price_info = []
+list_of_raw_text_of_daily_car_price_info_of_draft_contents = [(date, raw_text) for date, raw_text in
+                                                              get_all_raw_text_of_daily_car_price_info(
+                                                                  content=draft_contents)
+                                                              ]
+
+list_of_daily_car_price_info = [[(date, car_type, car_price) for car_type, car_price in
+                                 get_car_price_info_of_each_day(raw_text)] for date, raw_text in
+                                get_all_raw_text_of_daily_car_price_info(
+                                    content=draft_contents)]
+
+
 
 # Create a table
 table = PrettyTable()
@@ -69,9 +77,6 @@ for date, car_info in matches:
 
         car_price = car_price.strip().replace(',', '')
         table.add_row([date.strip(), car_type, car_price])
-
-
-
 
 # Print the table
 print(table)
