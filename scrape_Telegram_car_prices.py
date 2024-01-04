@@ -1,9 +1,8 @@
-import os
 import re
+
 from prettytable import PrettyTable
 
 import data_manager
-from persian_text_tools import convert_persian_numbers
 
 # set up path of files and folders
 example_data_file_name = 'draft.txt'
@@ -30,7 +29,7 @@ date_in_text_pattern = r'📅(.+?)\n([\s\S]*?)(?=\n📅|$)'
 matches = re.findall(date_in_text_pattern, draft_contents)
 
 
-def get_raw_text_of_daily_car_price_info(date_sign='📅', pattern=None, content=data_contents):
+def get_all_raw_text_of_daily_car_price_info(date_sign='📅', pattern=None, content=data_contents):
     """
 
     :param content:
@@ -44,6 +43,17 @@ def get_raw_text_of_daily_car_price_info(date_sign='📅', pattern=None, content
 
     return re.findall(pattern, content)
 
+
+
+
+def get_car_price_info_of_each_day(raw_text_of_daily_car_price_info=None, pattern=None, price_name_separator='⬅️'):
+    if pattern is None:
+        pattern = fr'(.+?){price_name_separator}([\d۰۱۲۳۴۵۶۷۸۹,]+)'
+    car_price_info = re.findall(r'(.+?)⬅️([\d۰۱۲۳۴۵۶۷۸۹,]+)', raw_text_of_daily_car_price_info)
+    return car_price_info
+
+
+list_of_raw_text_of_daily_car_price_info = []
 
 # Create a table
 table = PrettyTable()
