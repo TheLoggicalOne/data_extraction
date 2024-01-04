@@ -56,6 +56,11 @@ list_of_daily_car_price_info = [[(date, car_type, car_price) for car_type, car_p
                                 get_all_raw_text_of_daily_car_price_info(
                                     content=draft_contents)]
 
+dict_of_daily_car_price_info = {date: [(date, car_type, car_price) for car_type, car_price in
+                                       get_car_price_info_of_each_day(raw_text)] for date, raw_text in
+                                get_all_raw_text_of_daily_car_price_info(
+                                    content=draft_contents)}
+dict_keys = list(dict_of_daily_car_price_info.keys())
 
 
 # Create a table
