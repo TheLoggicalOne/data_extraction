@@ -1,8 +1,12 @@
 import re
-import pandas
+import pandas as pd
+import pandas as pd
 from prettytable import PrettyTable
 
 import data_manager
+
+# ---------------------------------------------------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------------------------------------------------#
 
 # set up path of files and folders
 example_data_file_name = 'draft.txt'
@@ -18,6 +22,9 @@ with open(example_data_path, "r") as file:
 with open(data_path, "r") as file:
     data_contents = file.read()
 
+# ---------------------------------------------------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------------------------------------------------#
+
 # scrapping for draft_content from
 
 # Define the pattern for extracting Jalaali dates and all car info between to consecutive dates
@@ -28,6 +35,9 @@ date_in_text_pattern = r'📅(.+?)\n([\s\S]*?)(?=\n📅|$)'
 # Extract Jalaali dates and car prices info of each day from the text
 matches = re.findall(date_in_text_pattern, draft_contents)
 
+
+# ---------------------------------------------------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------------------------------------------------#
 
 def get_all_raw_text_of_daily_car_price_info(date_sign='📅', pattern=None, content=data_contents):
     """
@@ -51,12 +61,6 @@ def get_car_price_info_of_each_day(raw_text_of_daily_car_price_info=None, patter
     return car_price_info
 
 
-list_of_daily_car_price_info = [[(date, car_type, car_price) for car_type, car_price in
-                                 get_car_price_info_of_each_day(raw_text)] for date, raw_text in
-                                get_all_raw_text_of_daily_car_price_info(
-                                    content=draft_contents)]
-
-
 def unstack_list_of_daily_price(price_list):
     l = []
     for li in price_list:
@@ -64,8 +68,16 @@ def unstack_list_of_daily_price(price_list):
     return l
 
 
-unstacked_list_of_daily_price_info = unstack_list_of_daily_price(list_of_daily_car_price_info)
+# ---------------------------------------------------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------------------------------------------------#
 
+
+list_of_daily_car_price_info = [[(date, car_type, car_price) for car_type, car_price in
+                                 get_car_price_info_of_each_day(raw_text)] for date, raw_text in
+                                get_all_raw_text_of_daily_car_price_info(
+                                    content=draft_contents)]
+
+unstacked_list_of_daily_price_info = unstack_list_of_daily_price(list_of_daily_car_price_info)
 
 dict_of_daily_car_price_info = {date: [(date, car_type, car_price) for car_type, car_price in
                                        get_car_price_info_of_each_day(raw_text)] for date, raw_text in
@@ -73,8 +85,23 @@ dict_of_daily_car_price_info = {date: [(date, car_type, car_price) for car_type,
                                     content=draft_contents)}
 dict_keys = list(dict_of_daily_car_price_info.keys())
 
+# ---------------------------------------------------------------------------------------------------------------------#
+# --------------------------------------- CREATING TABLES USING Pandas ------------------------------------------------#
+
+daily_car_price_info_df = pd.DataFrame(unstacked_list_of_daily_price_info,
+                                       columns=['Jalaali Date', 'Car Type', 'Car Price'])
 
 
+
+
+
+
+
+
+
+
+# ---------------------------------------------------------------------------------------------------------------------#
+# -------------------------------------- CREATING TABLES USING PrettyTable() ------------------------------------------#
 
 
 # Create a table
@@ -100,3 +127,6 @@ print(table)
 lines_of_draft = draft_contents.split('\n')
 
 # Question: Why are table titles misplaced? because farsi text directions?
+
+# ---------------------------------------------------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------------------------------------------------#
