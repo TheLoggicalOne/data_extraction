@@ -54,7 +54,7 @@ def separate_whole_raw_text_to_daily_raw_text(date_sign='📅', pattern=None, co
     return re.findall(pattern, content)
 
 
-def get_car_price_info_of_each_day(raw_text_of_daily_car_price_info=None, pattern=None, price_name_separator='⬅️'):
+def get_car_prices_info_from_daily_raw_text(raw_text_of_daily_car_price_info=None, pattern=None, price_name_separator='⬅️'):
     if pattern is None:
         pattern = fr'(.+?){price_name_separator}([\d۰۱۲۳۴۵۶۷۸۹,]+)'
     car_price_info = re.findall(r'(.+?)⬅️([\d۰۱۲۳۴۵۶۷۸۹,]+)', raw_text_of_daily_car_price_info)
@@ -72,14 +72,14 @@ def unstack_list_of_daily_price(price_list):
 # ---------------------------------------------------------------------------------------------------------------------#
 
 list_of_daily_car_price_info = [[(date, car_type, car_price) for car_type, car_price in
-                                 get_car_price_info_of_each_day(raw_text)] for date, raw_text in
+                                 get_car_prices_info_from_daily_raw_text(raw_text)] for date, raw_text in
                                 separate_whole_raw_text_to_daily_raw_text(
                                     content=draft_contents)]
 
 unstacked_list_of_daily_price_info = unstack_list_of_daily_price(list_of_daily_car_price_info)
 
 dict_of_daily_car_price_info = {date: [(date, car_type, car_price) for car_type, car_price in
-                                       get_car_price_info_of_each_day(raw_text)] for date, raw_text in
+                                       get_car_prices_info_from_daily_raw_text(raw_text)] for date, raw_text in
                                 separate_whole_raw_text_to_daily_raw_text(
                                     content=draft_contents)}
 dict_keys = list(dict_of_daily_car_price_info.keys())
