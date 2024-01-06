@@ -97,18 +97,26 @@ table = PrettyTable()
 table.field_names = ['Jalaali Date', 'Car Type', 'Car Price']
 
 # Add rows to the table
-for date, car_info in matches:
-    car_details = re.findall(r'(.+?)⬅️([\d۰۱۲۳۴۵۶۷۸۹,]+)', car_info)
-    for car_type, car_price in car_details:
-        # uncomment/comment following two lines to convert persian to english numbers
-        # car_type = convert_persian_numbers(car_type.strip())
-        car_type = car_type.strip()
+# for date, car_info in matches:
+#     car_details = re.findall(r'(.+?)⬅️([\d۰۱۲۳۴۵۶۷۸۹,]+)', car_info)
+#     for car_type, car_price in car_details:
+#         # uncomment/comment following two lines to convert persian to english numbers
+#         # car_type = convert_persian_numbers(car_type.strip())
+#         car_type = car_type.strip()
+#
+#         car_price = car_price.strip().replace(',', '')
+#         table.add_row([date.strip(), car_type, car_price])
 
-        car_price = car_price.strip().replace(',', '')
-        table.add_row([date.strip(), car_type, car_price])
+
+my_table = PrettyTable()
+my_table.field_names = ['Jalaali Date', 'Car Type', 'Car Price']
+for row in list_of_daily_car_prices_info:
+    my_table.add_row(list(row))
+
+
 
 # Print the table
-print(table)
+print(my_table)
 
 # wtf = '📅'
 
