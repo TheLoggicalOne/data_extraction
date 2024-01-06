@@ -39,7 +39,7 @@ matches = re.findall(date_in_text_pattern, draft_contents)
 # ---------------------------------------------------------------------------------------------------------------------#
 # ---------------------------------------------------------------------------------------------------------------------#
 
-def get_all_raw_text_of_daily_car_price_info(date_sign='📅', pattern=None, content=data_contents):
+def separate_whole_raw_text_to_daily_raw_text(date_sign='📅', pattern=None, content=data_contents):
     """
 
     :param content:
@@ -71,17 +71,16 @@ def unstack_list_of_daily_price(price_list):
 # ---------------------------------------------------------------------------------------------------------------------#
 # ---------------------------------------------------------------------------------------------------------------------#
 
-
 list_of_daily_car_price_info = [[(date, car_type, car_price) for car_type, car_price in
                                  get_car_price_info_of_each_day(raw_text)] for date, raw_text in
-                                get_all_raw_text_of_daily_car_price_info(
+                                separate_whole_raw_text_to_daily_raw_text(
                                     content=draft_contents)]
 
 unstacked_list_of_daily_price_info = unstack_list_of_daily_price(list_of_daily_car_price_info)
 
 dict_of_daily_car_price_info = {date: [(date, car_type, car_price) for car_type, car_price in
                                        get_car_price_info_of_each_day(raw_text)] for date, raw_text in
-                                get_all_raw_text_of_daily_car_price_info(
+                                separate_whole_raw_text_to_daily_raw_text(
                                     content=draft_contents)}
 dict_keys = list(dict_of_daily_car_price_info.keys())
 
@@ -92,17 +91,8 @@ daily_car_price_info_df = pd.DataFrame(unstacked_list_of_daily_price_info,
                                        columns=['Jalaali Date', 'Car Type', 'Car Price'])
 
 
-
-
-
-
-
-
-
-
 # ---------------------------------------------------------------------------------------------------------------------#
 # -------------------------------------- CREATING TABLES USING PrettyTable() ------------------------------------------#
-
 
 # Create a table
 table = PrettyTable()
