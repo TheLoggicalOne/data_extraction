@@ -88,7 +88,8 @@ dict_keys = list(dict_of_daily_car_price_info_example.keys())
 # ---------------------------------------------------------------------------------------------------------------------#
 # --------------------------------------- CREATING TABLES USING Pandas ------------------------------------------------#
 
-daily_car_price_info_df_example = pd.DataFrame(list_of_daily_car_prices_info_example, columns=['Jalaali Date', 'Car Type', 'Car Price'])
+daily_car_price_info_df_example = pd.DataFrame(list_of_daily_car_prices_info_example, columns=['Jalaali Date',
+                                                                                               'Car Type', 'Car Price'])
 
 daily_car_price_info_df = pd.DataFrame(list_of_daily_car_prices_info, columns=['Jalaali Date', 'Car Type', 'Car Price'])
 
