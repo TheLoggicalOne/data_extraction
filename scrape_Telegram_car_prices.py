@@ -23,7 +23,7 @@ with open(data_path, "r") as file:
     data_contents = file.read()
 
 # ---------------------------------------------------------------------------------------------------------------------#
-# ---------------------------------------------------------------------------------------------------------------------#
+# --------------------------- EXTRACTING DATA FROM EXAMPLE CONTENT OF @khodroo_rooz -----------------------------------#
 
 # scrapping for draft_content from
 
@@ -54,7 +54,8 @@ def separate_whole_raw_text_to_daily_raw_text(date_sign='📅', pattern=None, co
     return re.findall(pattern, content)
 
 
-def get_car_prices_info_from_daily_raw_text(raw_text_of_daily_car_price_info=None, pattern=None, price_name_separator='⬅️'):
+def get_car_prices_info_from_daily_raw_text(raw_text_of_daily_car_price_info=None, pattern=None,
+                                            price_name_separator='⬅️'):
     if pattern is None:
         pattern = fr'(.+?){price_name_separator}([\d۰۱۲۳۴۵۶۷۸۹,]+)'
     car_price_info = re.findall(r'(.+?)⬅️([\d۰۱۲۳۴۵۶۷۸۹,]+)', raw_text_of_daily_car_price_info)
