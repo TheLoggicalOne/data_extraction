@@ -70,24 +70,11 @@ def create_daily_car_prices_list_from_whole_text_of_khodroo_rooz(content=data_co
     return l
 
 
-def unstack_list_of_daily_price(price_list):
-    l = []
-    for li in price_list:
-        l += li
-    return l
-
-
 # ---------------------------------------------------------------------------------------------------------------------#
 # ---------------------------------------------------------------------------------------------------------------------#
 
-list_of_daily_car_price_info = [[(date, car_type, car_price) for car_type, car_price in
-                                 get_car_prices_info_from_daily_raw_text(raw_text)] for date, raw_text in
-                                separate_whole_raw_text_to_daily_raw_text(
-                                    content=draft_contents)]
 
-unstacked_list_of_daily_price_info = unstack_list_of_daily_price(list_of_daily_car_price_info)
-
-direct_list_of_daily_car_price_info = create_daily_car_prices_list_from_whole_text_of_khodroo_rooz(
+list_of_daily_car_prices_info = create_daily_car_prices_list_from_whole_text_of_khodroo_rooz(
     content=draft_contents)
 
 dict_of_daily_car_price_info = {date: [(date, car_type, car_price) for car_type, car_price in
@@ -99,9 +86,7 @@ dict_keys = list(dict_of_daily_car_price_info.keys())
 # ---------------------------------------------------------------------------------------------------------------------#
 # --------------------------------------- CREATING TABLES USING Pandas ------------------------------------------------#
 
-daily_car_price_info_df = pd.DataFrame(unstacked_list_of_daily_price_info,
-                                       columns=['Jalaali Date', 'Car Type', 'Car Price'])
-df2 = pd.DataFrame(direct_list_of_daily_car_price_info, columns=['Jalaali Date', 'Car Type', 'Car Price'])
+daily_car_price_info_df = pd.DataFrame(list_of_daily_car_prices_info, columns=['Jalaali Date', 'Car Type', 'Car Price'])
 
 # ---------------------------------------------------------------------------------------------------------------------#
 # -------------------------------------- CREATING TABLES USING PrettyTable() ------------------------------------------#
