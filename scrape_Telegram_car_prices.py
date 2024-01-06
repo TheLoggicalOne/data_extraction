@@ -74,20 +74,24 @@ def create_daily_car_prices_list_from_whole_text_of_khodroo_rooz(content=data_co
 # ---------------------------------------------------------------------------------------------------------------------#
 # ---------------------------------------------------------------------------------------------------------------------#
 
-
 list_of_daily_car_prices_info = create_daily_car_prices_list_from_whole_text_of_khodroo_rooz(
+    content=data_contents)
+list_of_daily_car_prices_info_example = create_daily_car_prices_list_from_whole_text_of_khodroo_rooz(
     content=draft_contents)
 
-dict_of_daily_car_price_info = {date: [(date, car_type, car_price) for car_type, car_price in
-                                       get_car_prices_info_from_daily_raw_text(raw_text)] for date, raw_text in
-                                separate_whole_raw_text_to_daily_raw_text(
+dict_of_daily_car_price_info_example = {date: [(date, car_type, car_price) for car_type, car_price in
+                                               get_car_prices_info_from_daily_raw_text(raw_text)] for date, raw_text in
+                                        separate_whole_raw_text_to_daily_raw_text(
                                     content=draft_contents)}
-dict_keys = list(dict_of_daily_car_price_info.keys())
+dict_keys = list(dict_of_daily_car_price_info_example.keys())
 
 # ---------------------------------------------------------------------------------------------------------------------#
 # --------------------------------------- CREATING TABLES USING Pandas ------------------------------------------------#
 
+daily_car_price_info_df_example = pd.DataFrame(list_of_daily_car_prices_info_example, columns=['Jalaali Date', 'Car Type', 'Car Price'])
+
 daily_car_price_info_df = pd.DataFrame(list_of_daily_car_prices_info, columns=['Jalaali Date', 'Car Type', 'Car Price'])
+
 
 # ---------------------------------------------------------------------------------------------------------------------#
 # -------------------------------------- CREATING TABLES USING PrettyTable() ------------------------------------------#
@@ -97,7 +101,7 @@ my_table = PrettyTable()
 my_table.field_names = ['Jalaali Date', 'Car Type', 'Car Price']
 
 # Add rows to the table
-for row in list_of_daily_car_prices_info:
+for row in list_of_daily_car_prices_info_example:
     my_table.add_row(list(row))
 
 print(my_table)
