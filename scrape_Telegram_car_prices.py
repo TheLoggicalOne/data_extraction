@@ -62,6 +62,24 @@ def get_car_prices_info_from_daily_raw_text(raw_text_of_daily_car_price_info=Non
     return car_price_info
 
 
+def get_car_prices_info_with_factory_from_daily_raw_text(raw_text_of_daily_car_price_info=None, pattern=None,
+                                            price_name_separator='⬅️', factory_sign='🔱'):
+    l = []
+    if pattern is None:
+        pattern = fr'(.+?){price_name_separator}([\d۰۱۲۳۴۵۶۷۸۹,]+)'
+    car_factory = None
+    lines = raw_text_of_daily_car_price_info.split('\n')
+    for line in lines:
+        if line.startswith(factory_sign):
+            car_factory = line.strip(factory_sign)
+        else:
+            car_type_price = re.findall(pattern, line)
+            if car_type_price:
+                car_type, car_price = car_type_price[0]
+                l.append((car_type, car_price, car_factory))
+    return l
+
+
 def create_daily_car_prices_list_from_whole_text_of_khodroo_rooz(content=data_contents):
     l = []
     for date, raw_text in separate_whole_raw_text_to_daily_raw_text(content=content):
