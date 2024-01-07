@@ -1,3 +1,5 @@
+from bs4 import BeautifulSoup
+
 import data_manager
 
 html_data_path_html = data_manager.get_path(base_dir=data_manager.KHODROO_ROOZ_HTML_DIR_PATH,
@@ -14,6 +16,8 @@ with open(html_data_path_txt, 'r') as file:
 # Write html data to html file
 # html_content = "<html><body>...</body></html>"
 
-with open(html_data_path_html, "a") as file:
-    file.write(html_content)
+formatted_content = BeautifulSoup(html_content, 'html.parser').prettify()
+
+with open(html_data_path_html, "w") as file:
+    file.write(formatted_content)
 
