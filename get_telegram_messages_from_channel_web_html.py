@@ -14,5 +14,6 @@ with open(html_data_path_txt, 'r') as file:
 # Write html data to html file
 # html_content = "<html><body>...</body></html>"
 
-with open(html_data_path_html, "w") as file:
+with open(html_data_path_html, "a") as file:
     file.write(html_content)
+
