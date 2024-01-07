@@ -63,7 +63,7 @@ def get_car_prices_info_from_daily_raw_text(raw_text_of_daily_car_price_info=Non
 
 
 def get_car_prices_info_with_factory_from_daily_raw_text(raw_text_of_daily_car_price_info=None, pattern=None,
-                                            price_name_separator='⬅️', factory_sign='🔱'):
+                                                         price_name_separator='⬅️', factory_sign='🔱'):
     l = []
     if pattern is None:
         pattern = fr'(.+?){price_name_separator}([\d۰۱۲۳۴۵۶۷۸۹,]+)'
@@ -118,6 +118,10 @@ daily_car_price_info_df_example = pd.DataFrame(list_of_daily_car_prices_info_exa
                                                                                                'Car Type', 'Car Price'])
 
 daily_car_price_info_df = pd.DataFrame(list_of_daily_car_prices_info, columns=['Jalaali Date', 'Car Type', 'Car Price'])
+
+daily_car_price_info_with_factory_df = pd.DataFrame(
+    create_daily_car_prices_list_with_carfactory_from_whole_text_of_khodroo_rooz(content=data_contents),
+    columns=['Jalaali Date', 'Car Type', 'Car Price', 'car_factory'])
 
 # ---------------------------------------------------------------------------------------------------------------------#
 # -------------------------------------- CREATING TABLES USING PrettyTable() ------------------------------------------#
