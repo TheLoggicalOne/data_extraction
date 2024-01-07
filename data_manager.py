@@ -4,6 +4,13 @@ RAW_DATA = 'Raw_Data'
 DATA_FILE_BASE_NAME = 'Daily_Car_Price_Telegram'
 
 
+KHODROO_ROOZ_HTML_DIR_NAME = 'khodroo_rooz_html_data'
+KHODROO_ROOZ_HTML_DIR_PATH = os.path.join(RAW_DATA, KHODROO_ROOZ_HTML_DIR_NAME)
+HTML_DATA_FILE_BASE_NAME = 'messages_container_'
+
+
+
+
 def get_path(base_dir=RAW_DATA, data_file_base_name=DATA_FILE_BASE_NAME, data_file_name_ext=".txt"):
     return os.path.join(base_dir, data_file_base_name+data_file_name_ext)
 
