@@ -1,10 +1,10 @@
 import os
 
 RAW_DATA = 'Raw_Data'
-DATA_FILE_BASE_NAME = 'Daily_Car_Price_Telegram.txt'
+DATA_FILE_BASE_NAME = 'Daily_Car_Price_Telegram'
 
 
-def get_path(base_dir=RAW_DATA, data_file_base_name=DATA_FILE_BASE_NAME, data_file_name_ext=""):
+def get_path(base_dir=RAW_DATA, data_file_base_name=DATA_FILE_BASE_NAME, data_file_name_ext=".txt"):
     return os.path.join(base_dir, data_file_base_name+data_file_name_ext)
 
 
