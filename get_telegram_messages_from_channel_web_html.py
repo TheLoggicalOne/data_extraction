@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 
-import data_manager
+import data_path_manager
 
 html_data_path_html = data_manager.get_path(base_dir=data_manager.KHODROO_ROOZ_HTML_DIR_PATH,
                                             data_file_base_name=data_manager.HTML_DATA_FILE_BASE_NAME,

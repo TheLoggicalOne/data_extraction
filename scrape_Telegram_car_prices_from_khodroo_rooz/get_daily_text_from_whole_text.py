@@ -2,7 +2,7 @@ import re
 import pandas as pd
 
 
-import data_manager
+import data_path_manager
 
 
 
