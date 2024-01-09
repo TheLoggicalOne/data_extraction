@@ -36,3 +36,11 @@ text to our desired form of data. Also note that instead of text, we could have 
 
 ###### Extracting and Transforming Telegram Daily Car Price Data From raw html representation of Body of text
 
+### Stage Two: generalization and unification and abstraction of Data journey from data source to our desired form
+#### Abstraction ideas
+- ##### concept of data source
+  - name
+  - type
+  - url
+  - where to store its raw data: Raw_Data/name
+  - where to store data
