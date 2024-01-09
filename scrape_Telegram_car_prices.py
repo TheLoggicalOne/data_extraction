@@ -1,6 +1,5 @@
 import re
 import pandas as pd
-import pandas as pd
 from prettytable import PrettyTable
 
 import data_manager
