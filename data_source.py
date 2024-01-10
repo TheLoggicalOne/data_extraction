@@ -6,7 +6,8 @@ from source_type import SOURCE_TYPES, SourceType
 
 class DataSource:
     def __init__(self, name=None, source_type=None, source_id=None, source_desc=None, data_dir_name=None,
-                 data_dir_path=None, url=None, project_id=None, project_path_config=None):
+                 data_dir_path=None, url=None, project_id=None,
+                 project_path_config=data_path_manager.DEFAULT_PATH_CONFIG):
         self.name = name
         self.source_type = source_type
         self.complete_source_type()
@@ -26,10 +27,8 @@ class DataSource:
         else:
             self.data_dir_name = data_dir_name
 
-        if project_path_config is None:
-            self.project_path_config = data_path_manager.DEFAULT_PATH_CONFIG
-        else:
-            self.project_path_config = project_path_config
+
+        self.project_path_config = project_path_config
 
         self.data_dir_path = data_dir_path
 
