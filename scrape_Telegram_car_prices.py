@@ -9,10 +9,10 @@ import data_path_manager
 
 # set up path of files and folders
 example_data_file_name = 'draft.txt'
-data_path = data_manager.get_path(base_dir=data_manager.RAW_DATA,
-                                  data_file_base_name=data_manager.DATA_FILE_BASE_NAME,
+data_path = data_path_manager.get_path(base_dir=data_path_manager.RAW_DATA_BASE_DIR_NAME,
+                                  data_file_base_name=data_path_manager.DATA_FILE_BASE_NAME,
                                   data_file_name_ext='_20230107.txt')
-example_data_path = data_manager.get_path(base_dir=data_manager.RAW_DATA,
+example_data_path = data_path_manager.get_path(base_dir=data_path_manager.RAW_DATA_BASE_DIR_NAME,
                                           data_file_base_name=example_data_file_name)
 
 # read the data
