@@ -62,10 +62,7 @@ class DataSource:
 
         self.project_path_config = project_path_config
 
-        if data_dir_path is None:
-            self.data_dir_path = self.abs_path_from_cwd()
-        else:
-            self.data_dir_path = data_dir_path
+        self.data_dir_path = data_dir_path
 
         self.url = url
 
@@ -87,7 +84,21 @@ class DataSource:
                 print(f'Error type: "{type(error)}"')
                 print(f'Complete the source type "{self.source_type}" in source_type.py module by creating SourceType')
 
-    def abs_path_from_cwd(self):
+    def get_data_dir_path(self, data_type='Raw', path_config=None):
+        if path_config is None:
+            path_config = self.project_path_config
+        if data_type == 'Raw':
+            return os.path.join(path_config.project_root_path_abs,
+                                path_config.raw_data_base_dir_path_rel,
+                                self.data_dir_name)
+        elif data_type == 'Processed':
+            return os.path.join(path_config.project_root_path_abs,
+                                path_config.processed_data_base_dir_path_rel,
+                                self.data_dir_name)
+        elif data_type == 'Final':
+            return os.path.join(path_config.project_root_path_abs,
+                                path_config.final_data_base_dir_path_rel,
+                                self.data_dir_name)
         return
 
 
@@ -99,3 +110,6 @@ if __name__ == '__main__':
                                            containing daily new car prices gathered from car dealers and sellers""",
                              url='t.me/khodroo_rooz')
 
+    p = __file__
+    c = os.getcwd()
+    d = data_path_manager.DEFAULT_PATH_CONFIG
