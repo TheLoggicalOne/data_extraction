@@ -5,6 +5,7 @@ from source_type import SOURCE_TYPES, SourceType
 
 
 class DataSource:
+    
     def __init__(self, name=None, source_type=None, source_id=None, source_desc=None, data_dir_name=None,
                  data_dir_path=None, url=None, project_id=None,
                  project_path_config=data_path_manager.DEFAULT_PATH_CONFIG):
