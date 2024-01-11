@@ -62,7 +62,10 @@ class DataSource:
 
         self.project_path_config = project_path_config
 
-        self.data_dir_path = data_dir_path
+        if data_dir_path is None:
+            self.data_dir_path = self.abs_path_from_cwd()
+        else:
+            self.data_dir_path = data_dir_path
 
         self.url = url
 
@@ -70,7 +73,7 @@ class DataSource:
         try:
             r = self.source_type.project_abv
         except Exception as error:
-            print(f'Error:  "{error}"')
+            print(f'Project Warning:  "{error}"')
             print(f'Error type: "{type(error)}"')
             r = ''
         return self.name + '_' + r
@@ -80,7 +83,7 @@ class DataSource:
             try:
                 self.source_type = SOURCE_TYPES[self.source_type]
             except KeyError as error:
-                print(f'Error: "{error}"')
+                print(f'Project Warning: "{error}"')
                 print(f'Error type: "{type(error)}"')
                 print(f'Complete the source type "{self.source_type}" in source_type.py module by creating SourceType')
 
