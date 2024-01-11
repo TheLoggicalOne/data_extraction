@@ -2,7 +2,8 @@ import os
 
 PROJECT_ROOT_NAME = 'data_extraction'
 PROJECT_ROOT_PATH = '/home/jvn/GameTheorist/Computing/PythonProjects/data_extraction'
-
+# See PathConfig.check_project_path, we need a more consistent way of getting project root path.
+# maybe a file that we are always sure is in project first level will do the trick
 DATA_BASE_DIR = 'Data'
 RAW_DATA_BASE_DIR_NAME = 'Raw_Data'
 PROCESSED_DATA_DIR_NAME = 'Processed_Data'
@@ -39,12 +40,13 @@ class PathConfig:
     def check_project_path(self, print_warnings_regardless=False):
         if (os.getcwd() != self.project_root_path_abs) or print_warnings_regardless:
             print('Project Warning: project root path is different from current directory')
-            print(f'Parent of Current Working Directory Is {os.path.dirname(os.getcwd())}')
+            print(f'Current Working Directory Is {os.getcwd()}')
             print(f'Project Root Path Is {self.project_root_path_abs}')
         if (os.path.dirname(__file__) != self.project_root_path_abs) or print_warnings_regardless:
             print('Project Warning: project root path is different from directory of current file')
             print(f'Directory of Current file Is {os.path.dirname(__file__) }')
             print(f'Project Root Path Is {self.project_root_path_abs}')
+            print(f'Path of Current file Is {__file__}')
         else:
             print('Paths related to Project Root seems to be correct')
 
