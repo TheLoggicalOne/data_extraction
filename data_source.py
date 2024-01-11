@@ -5,10 +5,41 @@ from source_type import SOURCE_TYPES, SourceType
 
 
 class DataSource:
-    
+    """Represents a data source.
+
+    This class provides functionality to handle data sources. Its main job is gathering and holding information about
+    a given data source and providing easy access to these information.  It includes methods to create a project ID and
+    complete the source type. The attributes listed below are initialized through the constructor (`__init__`).
+
+    Attributes:
+        name (str): The name of the data source in the project
+        source_type (SourceType): The type of the data source.
+        source_id (str): The ID of the data source (default: same as `name`).
+        source_desc (str): The description of the data source.
+        data_dir_name (str): The name of the data directory (default: same as `project_id`).
+        data_dir_path (str): The path to the data directory.
+        url (str): The URL of the data source.
+        project_id (str): The project ID of the data source (default: created using `name` and `source_type`).
+        project_path_config (str): The path configuration for the project (default: data_path_manager.DEFAULT_PATH_CONFIG).
+    """
+
     def __init__(self, name=None, source_type=None, source_id=None, source_desc=None, data_dir_name=None,
                  data_dir_path=None, url=None, project_id=None,
                  project_path_config=data_path_manager.DEFAULT_PATH_CONFIG):
+        """Initialize a DataSource object.
+
+        Args:
+            name (str): The name of the data source.
+            source_type (str or SourceType): The type of the data source.
+            source_id (str, optional): The ID of the data source. Defaults to None.
+            source_desc (str, optional): The description of the data source. Defaults to None.
+            data_dir_name (str, optional): The name of the data directory. Defaults to None.
+            data_dir_path (str, optional): The path to the data directory. Defaults to None.
+            url (str, optional): The URL of the data source. Defaults to None.
+            project_id (str, optional): The project ID of the data source. Defaults to None.
+            project_path_config (str, optional): The path configuration for the project. Defaults to
+                data_path_manager.DEFAULT_PATH_CONFIG.
+        """
         self.name = name
         self.source_type = source_type
         self.complete_source_type()
@@ -64,3 +95,4 @@ if __name__ == '__main__':
                              source_desc="""Telegram Channel with almost always one message per day 
                                            containing daily new car prices gathered from car dealers and sellers""",
                              url='t.me/khodroo_rooz')
+
