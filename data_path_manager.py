@@ -7,7 +7,7 @@ PROJECT_ROOT_PATH = '/home/jvn/GameTheorist/Computing/PythonProjects/data_extrac
 DATA_BASE_DIR = 'Data'
 RAW_DATA_BASE_DIR_NAME = 'Raw_Data'
 PROCESSED_DATA_DIR_NAME = 'Processed_Data'
-
+FINAL_DATA_DIR_NAME = 'Final_Data'
 
 DATA_FILE_BASE_NAME = 'Daily_Car_Price_Telegram'
 
@@ -23,6 +23,7 @@ class PathConfig:
                  data_base_dir_name=DATA_BASE_DIR,
                  raw_data_base_dir_name=RAW_DATA_BASE_DIR_NAME,
                  processed_data_dir_name=PROCESSED_DATA_DIR_NAME,
+                 final_data_dir_name=FINAL_DATA_DIR_NAME,
                  data_base_root_path_rel='',
                  structure='STANDARD_TREE'):
         self.project_root_name = project_root_name
@@ -30,12 +31,14 @@ class PathConfig:
         self.data_base_dir_name = data_base_dir_name
         self.raw_data_base_dir_name = raw_data_base_dir_name
         self.processed_data_dir_name = processed_data_dir_name
+        self.final_data_dir_name = final_data_dir_name
         self.structure = structure
         self.data_base_root_path_rel = data_base_root_path_rel
         if self.structure == 'STANDARD_TREE':
             self.data_base_dir_path_rel = os.path.join(self.data_base_root_path_rel, self.data_base_dir_name)
-            self.raw_data_base_dir_path_rel = os.path.join(self.data_base_dir_name, self.raw_data_base_dir_name)
-            self.processed_data_dir_path_rel = os.path.join(self.data_base_dir_name, self.processed_data_dir_name)
+            self.raw_data_base_dir_path_rel = os.path.join(self.data_base_dir_path_rel, self.raw_data_base_dir_name)
+            self.processed_data_dir_path_rel = os.path.join(self.data_base_dir_path_rel, self.processed_data_dir_name)
+            self.final_data_dir_path_rel = os.path.join(self.data_base_dir_path_rel, self.final_data_dir_name)
 
     def check_project_path(self, print_warnings_regardless=False):
         if (os.getcwd() != self.project_root_path_abs) or print_warnings_regardless:
