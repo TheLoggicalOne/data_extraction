@@ -1,8 +1,8 @@
 import os
 
 DATA_BASE_DIR = 'Data'
-RAW_DATA_BASE_DIR_NAME = 'Data/Raw_Data'
-PROCESSED_DATA_DIR_NAME = 'Data/Processed_Data'
+RAW_DATA_BASE_DIR_NAME = 'Raw_Data'
+PROCESSED_DATA_DIR_NAME = 'Processed_Data'
 
 
 DATA_FILE_BASE_NAME = 'Daily_Car_Price_Telegram'
