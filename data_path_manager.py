@@ -1,5 +1,6 @@
 import os
 
+PROJECT_ROOT_NAME = 'data_extraction'
 DATA_BASE_DIR = 'Data'
 RAW_DATA_BASE_DIR_NAME = 'Raw_Data'
 PROCESSED_DATA_DIR_NAME = 'Processed_Data'
@@ -14,23 +15,25 @@ HTML_DATA_FILE_BASE_NAME = 'messages_container_'
 
 
 class PathConfig:
-    def __init__(self, data_base_dir_name, raw_data_base_dir_name, processed_data_dir_name,
-                 root='',
+    def __init__(self, project_root_name=PROJECT_ROOT_NAME,
+                 data_base_dir_name=DATA_BASE_DIR,
+                 raw_data_base_dir_name=RAW_DATA_BASE_DIR_NAME,
+                 processed_data_dir_name=PROCESSED_DATA_DIR_NAME,
+                 data_base_root='',
                  structure='STANDARD_TREE'):
+        self.project_root_name = project_root_name
         self.data_base_dir_name = data_base_dir_name
         self.raw_data_base_dir_name = raw_data_base_dir_name
         self.processed_data_dir_name = processed_data_dir_name
         self.structure = structure
-        self.root = root
+        self.data_base_root = data_base_root
         if self.structure == 'STANDARD_TREE':
-            self.data_base_dir_path = os.path.join(self.root, self.data_base_dir_name)
+            self.data_base_dir_path = os.path.join(self.data_base_root, self.data_base_dir_name)
             self.raw_data_base_dir_path = os.path.join(self.data_base_dir_name, self.raw_data_base_dir_name)
             self.processed_data_dir_path = os.path.join(self.data_base_dir_name, self.processed_data_dir_name)
 
 
-DEFAULT_PATH_CONFIG = PathConfig( data_base_dir_name=DATA_BASE_DIR,
-                                  raw_data_base_dir_name=RAW_DATA_BASE_DIR_NAME,
-                                  processed_data_dir_name=PROCESSED_DATA_DIR_NAME)
+DEFAULT_PATH_CONFIG = PathConfig()
 
 
 def get_path(base_dir=RAW_DATA_BASE_DIR_NAME, data_dir_relative_to_base_dir='',
