@@ -52,7 +52,7 @@ We are going to work with different data sources and for each source we want to 
   - url
   - where to store its raw data, processed data and final data:
     - `Data/Raw_Data/name`
-    - `Data/Processed_Data/nam`e
+    - `Data/Processed_Data/name`
     - `Data/Final_Data/name`
   - some parameter and configurations specific to data source
   - maybe some specific function and codes related to data source
@@ -61,3 +61,7 @@ We would like to have these managed in a nice and extendable way.
     determines the path of project root in file system
   - we have created `data_source.py` module and DataSource class to keep and manage information about
     specific data sources
+
+
+##### in change_data_dir_struct git branch:
+- we are going to change data structure from `Data/data_type/name` to `Data/name/data_type/content_type`
