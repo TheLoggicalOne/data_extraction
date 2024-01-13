@@ -2,19 +2,14 @@ import os
 
 PROJECT_ROOT_NAME = 'data_extraction'
 PROJECT_ROOT_PATH = '/home/jvn/GameTheorist/Computing/PythonProjects/data_extraction'
-# See PathConfig.check_project_path, we need a more consistent way of getting project root path.
+# See PathConfig check_project_path, we need a more consistent way of getting project root path.
 # maybe a file that we are always sure is in project first level will do the trick
 DATA_BASE_DIR = 'Data'
 RAW_DATA_BASE_DIR_NAME = 'Raw_Data'
 PROCESSED_DATA_DIR_NAME = 'Processed_Data'
 FINAL_DATA_DIR_NAME = 'Final_Data'
 
-DATA_FILE_BASE_NAME = 'Daily_Car_Price_Telegram'
 
-
-KHODROO_ROOZ_HTML_DIR_NAME = 'khodroo_rooz'
-KHODROO_ROOZ_HTML_DIR_PATH = os.path.join(RAW_DATA_BASE_DIR_NAME, KHODROO_ROOZ_HTML_DIR_NAME)
-HTML_DATA_FILE_BASE_NAME = 'messages_container_'
 
 
 class PathConfig:
