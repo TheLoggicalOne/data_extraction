@@ -59,7 +59,6 @@ class DataSource:
         else:
             self.data_dir_name = data_dir_name
 
-
         self.project_path_config = project_path_config
 
         self.data_dir_path = data_dir_path
@@ -84,22 +83,22 @@ class DataSource:
                 print(f'Error type: "{type(error)}"')
                 print(f'Complete the source type "{self.source_type}" in source_type.py module by creating SourceType')
 
-    def get_data_dir_path(self, data_type='Raw', path_config=None):
+    def get_data_path(self, data_type='Raw', path_config: data_path_manager.PathConfig = None,
+                      data_file_name='', data_file_ext=''):
         if path_config is None:
             path_config = self.project_path_config
-        if data_type == 'Raw':
-            return os.path.join(path_config.project_root_path_abs,
-                                path_config.raw_data_base_dir_path_rel,
-                                self.data_dir_name)
-        elif data_type == 'Processed':
-            return os.path.join(path_config.project_root_path_abs,
-                                path_config.processed_data_base_dir_path_rel,
-                                self.data_dir_name)
-        elif data_type == 'Final':
-            return os.path.join(path_config.project_root_path_abs,
-                                path_config.final_data_base_dir_path_rel,
-                                self.data_dir_name)
-        return
+        if data_type in path_config.data_types:
+            middle_path_rel = path_config.path_rel_of_data_type_dict[data_type]
+
+        elif data_type is None:
+            middle_path_rel = path_config.data_base_dir_path_rel
+
+
+        path_ = os.path.join(path_config.project_root_path_abs,
+                             middle_path_rel,
+                             self.data_dir_name, data_file_name + data_file_ext)
+        return path_
+
 
 
 if __name__ == '__main__':
