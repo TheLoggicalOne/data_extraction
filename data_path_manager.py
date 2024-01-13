@@ -10,30 +10,42 @@ PROCESSED_DATA_DIR_NAME = 'Processed_Data'
 FINAL_DATA_DIR_NAME = 'Final_Data'
 
 
-
-
 class PathConfig:
     def __init__(self, project_root_name=PROJECT_ROOT_NAME,
                  project_root_path_abs=PROJECT_ROOT_PATH,
                  data_base_dir_name=DATA_BASE_DIR,
+                 data_types=None,
+                 dir_name_of_data_type_dict=None,
                  raw_data_base_dir_name=RAW_DATA_BASE_DIR_NAME,
-                 processed_data_dir_name=PROCESSED_DATA_DIR_NAME,
+                 processed_data_base_dir_name=PROCESSED_DATA_DIR_NAME,
                  final_data_dir_name=FINAL_DATA_DIR_NAME,
                  data_base_root_path_rel='',
                  structure='STANDARD_TREE'):
         self.project_root_name = project_root_name
         self.project_root_path_abs = project_root_path_abs
         self.data_base_dir_name = data_base_dir_name
-        self.raw_data_base_dir_name = raw_data_base_dir_name
-        self.processed_data_dir_name = processed_data_dir_name
-        self.final_data_dir_name = final_data_dir_name
+        # self.raw_data_base_dir_name = raw_data_base_dir_name
+        # self.processed_data_base_dir_name = processed_data_base_dir_name
+        # self.final_data_dir_name = final_data_dir_name
+        if data_types is None:
+            self.data_types = ['Raw', 'Processed', 'Final']
+        else:
+            self.data_types = data_types
+        if dir_name_of_data_type_dict is None:
+            self.dir_name_of_data_type_dict = {x: x + '_Data' for x in self.data_types}
+        else:
+            self.dir_name_of_data_type_dict = dir_name_of_data_type_dict
         self.structure = structure
         self.data_base_root_path_rel = data_base_root_path_rel
         if self.structure == 'STANDARD_TREE':
             self.data_base_dir_path_rel = os.path.join(self.data_base_root_path_rel, self.data_base_dir_name)
-            self.raw_data_base_dir_path_rel = os.path.join(self.data_base_dir_path_rel, self.raw_data_base_dir_name)
-            self.processed_data_dir_path_rel = os.path.join(self.data_base_dir_path_rel, self.processed_data_dir_name)
-            self.final_data_dir_path_rel = os.path.join(self.data_base_dir_path_rel, self.final_data_dir_name)
+            self.path_rel_of_data_type_dict = {
+                x: os.path.join(self.data_base_dir_path_rel, self.dir_name_of_data_type_dict[x])
+                for x in self.data_types}
+            # self.raw_data_base_dir_path_rel = os.path.join(self.data_base_dir_path_rel, self.raw_data_base_dir_name)
+            # self.processed_data_dir_path_rel = os.path.join(self.data_base_dir_path_rel,
+            #                                                 self.processed_data_base_dir_name)
+            # self.final_data_dir_path_rel = os.path.join(self.data_base_dir_path_rel, self.final_data_dir_name)
 
     def check_project_path(self, print_warnings_regardless=False):
         if (os.getcwd() != self.project_root_path_abs) or print_warnings_regardless:
@@ -42,22 +54,21 @@ class PathConfig:
             print(f'Project Root Path Is {self.project_root_path_abs}')
         if (os.path.dirname(__file__) != self.project_root_path_abs) or print_warnings_regardless:
             print('Project Warning: project root path is different from directory of current file')
-            print(f'Directory of Current file Is {os.path.dirname(__file__) }')
+            print(f'Directory of Current file Is {os.path.dirname(__file__)}')
             print(f'Project Root Path Is {self.project_root_path_abs}')
             print(f'Path of Current file Is {__file__}')
         else:
             print('Paths related to Project Root seems to be correct')
 
+    def add_dtype_with_update(self, **dtypes):
+        for key, value in dtypes.items():
+            self.data_types.append(key)
+            self.dir_name_of_data_type_dict[key] = value
+            self.path_rel_of_data_type_dict[key] = os.path.join(
+                self.data_base_dir_path_rel, self.dir_name_of_data_type_dict[key])
+
 
 DEFAULT_PATH_CONFIG = PathConfig()
 
-
-def get_path(base_dir=RAW_DATA_BASE_DIR_NAME, data_dir_relative_to_base_dir='',
-             data_file_base_name=DATA_FILE_BASE_NAME, data_file_name_ext=".txt"):
-    return os.path.join(base_dir, data_dir_relative_to_base_dir, data_file_base_name + data_file_name_ext)
-
-
 if __name__ == '__main__':
-    example_data_file_name = 'draft.txt'
-    data_path = get_path(base_dir=RAW_DATA_BASE_DIR_NAME, data_file_base_name=DATA_FILE_BASE_NAME)
-    example_data_path = get_path(base_dir=RAW_DATA_BASE_DIR_NAME, data_file_base_name=example_data_file_name)
+    d = DEFAULT_PATH_CONFIG
