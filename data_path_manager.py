@@ -21,9 +21,7 @@ class PathConfig:
         self.project_root_name = project_root_name
         self.project_root_path_abs = project_root_path_abs
         self.data_base_dir_name = data_base_dir_name
-        # self.raw_data_base_dir_name = raw_data_base_dir_name
-        # self.processed_data_base_dir_name = processed_data_base_dir_name
-        # self.final_data_dir_name = final_data_dir_name
+
         if data_types is None:
             self.data_types = ['Raw', 'Processed', 'Final']
         else:
@@ -39,10 +37,7 @@ class PathConfig:
             self.path_rel_of_data_type_dict = {
                 x: os.path.join(self.data_base_dir_path_rel, self.dir_name_of_data_type_dict[x])
                 for x in self.data_types}
-            # self.raw_data_base_dir_path_rel = os.path.join(self.data_base_dir_path_rel, self.raw_data_base_dir_name)
-            # self.processed_data_dir_path_rel = os.path.join(self.data_base_dir_path_rel,
-            #                                                 self.processed_data_base_dir_name)
-            # self.final_data_dir_path_rel = os.path.join(self.data_base_dir_path_rel, self.final_data_dir_name)
+
 
     def check_project_path(self, print_warnings_regardless=False):
         if (os.getcwd() != self.project_root_path_abs) or print_warnings_regardless:
