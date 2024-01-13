@@ -20,6 +20,7 @@ TEXT_OF_ALL_MESSAGES_PATH = Data_Sources.Telegram_Daily_Car_Prices.get_data_path
 example_data_path = Data_Sources.Telegram_Daily_Car_Prices.get_data_path(data_file_name='draft', data_file_ext='.txt')
 data_path = Data_Sources.Telegram_Daily_Car_Prices.get_data_path(
     data_file_name='whole_text_of_all_messages_upto_20230107', data_file_ext='.txt')
+
 # read the data
 with open(example_data_path, "r") as file:
     draft_contents = file.read()
@@ -46,7 +47,6 @@ matches = re.findall(date_in_text_pattern, draft_contents)
 
 def separate_whole_raw_text_to_daily_raw_text(date_sign='📅', pattern=None, content=data_contents):
     """
-
     :param content:
     :param date_sign:
     :param pattern:
@@ -90,7 +90,6 @@ def create_daily_car_prices_list_from_whole_text_of_khodroo_rooz(content=data_co
     for date, raw_text in separate_whole_raw_text_to_daily_raw_text(content=content):
         for car_type, car_price in get_car_prices_info_from_daily_raw_text(raw_text):
             l.append((date, car_type, car_price))
-
     return l
 
 
