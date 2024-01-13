@@ -16,9 +16,6 @@ class PathConfig:
                  data_base_dir_name=DATA_BASE_DIR,
                  data_types=None,
                  dir_name_of_data_type_dict=None,
-                 raw_data_base_dir_name=RAW_DATA_BASE_DIR_NAME,
-                 processed_data_base_dir_name=PROCESSED_DATA_DIR_NAME,
-                 final_data_dir_name=FINAL_DATA_DIR_NAME,
                  data_base_root_path_rel='',
                  structure='STANDARD_TREE'):
         self.project_root_name = project_root_name
