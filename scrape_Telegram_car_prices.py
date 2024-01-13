@@ -3,18 +3,23 @@ import pandas as pd
 from prettytable import PrettyTable
 
 import data_path_manager
-
+import Data_Sources
 # ---------------------------------------------------------------------------------------------------------------------#
 # ---------------------------------------------------------------------------------------------------------------------#
 
 # set up path of files and folders
-example_data_file_name = 'draft.txt'
-data_path = data_path_manager.get_path(base_dir=data_path_manager.RAW_DATA_BASE_DIR_NAME,
-                                  data_file_base_name=data_path_manager.DATA_FILE_BASE_NAME,
-                                  data_file_name_ext='_20230107.txt')
-example_data_path = data_path_manager.get_path(base_dir=data_path_manager.RAW_DATA_BASE_DIR_NAME,
-                                          data_file_base_name=example_data_file_name)
+# example_data_file_name = 'draft.txt'
+# data_path = data_path_manager.get_path(base_dir=data_path_manager.RAW_DATA_BASE_DIR_NAME,
+#                                   data_file_base_name=data_path_manager.DATA_FILE_BASE_NAME,
+#                                   data_file_name_ext='_20230107.txt')
+# example_data_path = data_path_manager.get_path(base_dir=data_path_manager.RAW_DATA_BASE_DIR_NAME,
+#                                           data_file_base_name=example_data_file_name)
 
+TEXT_OF_ALL_MESSAGES_PATH = Data_Sources.Telegram_Daily_Car_Prices.get_data_path()
+
+example_data_path = Data_Sources.Telegram_Daily_Car_Prices.get_data_path(data_file_name='draft', data_file_ext='.txt')
+data_path = Data_Sources.Telegram_Daily_Car_Prices.get_data_path(
+    data_file_name='whole_text_of_all_messages_upto_20230107', data_file_ext='.txt')
 # read the data
 with open(example_data_path, "r") as file:
     draft_contents = file.read()
