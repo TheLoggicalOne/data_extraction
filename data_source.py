@@ -83,8 +83,9 @@ class DataSource:
                 print(f'Error type: "{type(error)}"')
                 print(f'Complete the source type "{self.source_type}" in source_type.py module by creating SourceType')
 
-    def get_data_path(self, data_type='Raw', path_config: data_path_manager.PathConfig = None,
-                      data_file_name='', data_file_ext=''):
+    def get_data_path(self, content_type=None,  path_config: data_path_manager.PathConfig = None,
+                      data_type_override=None,
+                      data_file_name_override=None, data_file_ext_override=None):
         if path_config is None:
             path_config = self.project_path_config
         if data_type in path_config.data_types:
