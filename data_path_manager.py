@@ -23,7 +23,7 @@ class PathConfig:
         self.data_base_dir_name = data_base_dir_name
 
         if data_types is None:
-            self.data_types = ['Raw', 'Processed', 'Final']
+            self.data_types = ['', 'Raw', 'Processed', 'Final']
         else:
             self.data_types = data_types
         if dir_name_of_data_type_dict is None:
@@ -34,10 +34,14 @@ class PathConfig:
         self.data_base_root_path_rel = data_base_root_path_rel
         if self.structure == 'STANDARD_TREE':
             self.data_base_dir_path_rel = os.path.join(self.data_base_root_path_rel, self.data_base_dir_name)
-            self.path_rel_of_data_type_dict = {
-                x: os.path.join(self.data_base_dir_path_rel, self.dir_name_of_data_type_dict[x])
-                for x in self.data_types}
-
+            # change next attr to a func that...wait...do we really need them?
+            # data_base_dir_name,  dir_name_of_data_type, DataSource_dir_name, content_type_dir_name, file_name
+            # self.path_rel_of_data_type_dict = {
+            #     x: os.path.join(self.data_base_dir_path_rel, self.dir_name_of_data_type_dict[x])
+            #     for x in self.data_types}
+            # self.path_rel_frame_of_data_type = {
+            #     x: lambda name: os.path.join(self.data_base_dir_path_rel, name, self.dir_name_of_data_type_dict[x])
+            #     for x in self.data_types}
 
     def check_project_path(self, print_warnings_regardless=False):
         if (os.getcwd() != self.project_root_path_abs) or print_warnings_regardless:
