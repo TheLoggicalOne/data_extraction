@@ -65,3 +65,5 @@ We would like to have these managed in a nice and extendable way.
 
 ##### in change_data_dir_struct git branch:
 - we are going to change data structure from `Data/data_type/name` to `Data/name/data_type/content_type`
+- some content types will create their own directory and some only enforce file naming convention
+- 
