@@ -1,3 +1,6 @@
+import datetime
+
+
 class ContentType:
     def __init__(self, name=None, base_file_system_rep=None, data_type=None, file_ext=None,
                  naming_ext_convention_key='standard_from_start_to_end'):

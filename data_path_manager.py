@@ -60,8 +60,8 @@ class PathConfig:
         for key, value in dtypes.items():
             self.data_types.append(key)
             self.dir_name_of_data_type_dict[key] = value
-            self.path_rel_of_data_type_dict[key] = os.path.join(
-                self.data_base_dir_path_rel, self.dir_name_of_data_type_dict[key])
+            # self.path_rel_of_data_type_dict[key] = os.path.join(
+            #     self.data_base_dir_path_rel, self.dir_name_of_data_type_dict[key])
 
 
 DEFAULT_PATH_CONFIG = PathConfig()
