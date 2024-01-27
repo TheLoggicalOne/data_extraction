@@ -9,9 +9,8 @@ class ContentType:
         self.base_file_system_rep = base_file_system_rep or self.name
         self.data_type = data_type
 
-        if file_ext is None:
-            file_ext = self.get_file_ext_from_data_type()
-        self.file_ext = file_ext
+
+        self.file_ext = file_ext or self.get_file_ext_from_data_type()
         self.naming_ext_convention_key = naming_ext_convention_key
 
     def add_naming_ext(self, *args, base_fs_name=None, naming_convention_key=None, **kwargs):
