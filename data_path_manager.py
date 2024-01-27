@@ -22,14 +22,17 @@ class PathConfig:
         self.project_root_path_abs = project_root_path_abs
         self.data_base_dir_name = data_base_dir_name
 
-        if data_types is None:
-            self.data_types = ['', 'Raw', 'Processed', 'Final']
-        else:
-            self.data_types = data_types
-        if dir_name_of_data_type_dict is None:
-            self.dir_name_of_data_type_dict = {x: x + '_Data' for x in self.data_types}
-        else:
-            self.dir_name_of_data_type_dict = dir_name_of_data_type_dict
+        # if data_types is None:
+        #     self.data_types = ['', 'Raw', 'Processed', 'Final']
+        # else:
+        #     self.data_types = data_types
+        self.data_types = data_types or ['', 'Raw', 'Processed', 'Final']
+
+        # if dir_name_of_data_type_dict is None:
+        #     self.dir_name_of_data_type_dict = {x: x + '_Data' for x in self.data_types}
+        # else:
+        #     self.dir_name_of_data_type_dict = dir_name_of_data_type_dict
+        self.dir_name_of_data_type_dict = dir_name_of_data_type_dict or {x: x + '_Data' for x in self.data_types}
         self.structure = structure
         self.data_base_root_path_rel = data_base_root_path_rel
         if self.structure == 'STANDARD_TREE':
