@@ -43,22 +43,23 @@ class DataSource:
         self.name = name
         self.source_type = source_type
         self.complete_source_type()
-        if source_id is None:
-            self.source_id = self.name
-        else:
-            self.source_id = source_id
+        # if source_id is None:
+        #     self.source_id = self.name
+        # else:
+        #     self.source_id = source_id
+        self.source_id = source_id or self.name
         self.source_desc = source_desc
 
-        if project_id is None:
-            self.project_id = self.create_project_id()
-        else:
-            self.project_id = project_id
-
-        if data_dir_name is None:
-            self.data_dir_name = self.project_id
-        else:
-            self.data_dir_name = data_dir_name
-
+        # if project_id is None:
+        #     self.project_id = self.create_project_id()
+        # else:
+        #     self.project_id = project_id
+        self.project_id = project_id or self.create_project_id()
+        # if data_dir_name is None:
+        #     self.data_dir_name = self.project_id
+        # else:
+        #     self.data_dir_name = data_dir_name
+        self.data_dir_name = data_dir_name or self.project_id
         self.project_path_config = project_path_config
 
         self.data_dir_path = data_dir_path
