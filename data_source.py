@@ -87,13 +87,18 @@ class DataSource:
     def get_data_path(self, content_type=None,  path_config: data_path_manager.PathConfig = None,
                       data_type_override=None,
                       data_file_name_override=None, data_file_ext_override=None):
+
+        data_type = data_type_override or content_type.data_format
+
         if path_config is None:
             path_config = self.project_path_config
+
         if data_type in path_config.data_types:
             middle_path_rel = path_config.path_rel_of_data_type_dict[data_type]
 
         elif data_type is None:
             middle_path_rel = path_config.data_base_dir_path_rel
+
 
 
         path_ = os.path.join(path_config.project_root_path_abs,

@@ -8,6 +8,6 @@ Telegram_Daily_Car_Prices_DS = DataSource(name='khodroo_rooz',
                                           url='t.me/khodroo_rooz')
 DS = Telegram_Daily_Car_Prices_DS
 
-ct = ContentType(name='whole_text_of_all_messages', data_type='text',
+ct = ContentType(name='whole_text_of_all_messages', data_format='text',
                  # file_ext='.txt'
                  )
