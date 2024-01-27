@@ -10,7 +10,7 @@ class ContentType:
         self.data_format = data_format
 
 
-        self.file_ext = file_ext or self.get_file_ext_from_data_type()
+        self.file_ext = file_ext or self.get_file_ext_from_data_format()
         self.naming_ext_convention_key = naming_ext_convention_key
 
     def add_naming_ext(self, *args, base_fs_name=None, naming_convention_key=None, **kwargs):
@@ -22,9 +22,9 @@ class ContentType:
         print(kwargs)
         return NAMING_EXT_CONVENTIONS[naming_convention_key](base_fs_name, *args, **kwargs)
 
-    def get_file_ext_from_data_type(self, dtype=None):
-        final_dtype = dtype or self.data_format
-        return FILE_EXT_OF_DTYPES[final_dtype]
+    def get_file_ext_from_data_format(self, dformat=None):
+        final_dformat = dformat or self.data_format
+        return FILE_EXT_OF_DTYPES[final_dformat]
 
 
 FILE_EXT_OF_DTYPES = {'text': '.txt', 'html': '.html'}
