@@ -5,10 +5,10 @@ class ContentType:
     def __init__(self, name=None, base_file_system_rep=None, data_type=None, file_ext=None,
                  naming_ext_convention_key='standard_from_start_to_end'):
         self.name = name
-        if base_file_system_rep is None:
-            base_file_system_rep = self.name
-        self.base_file_system_rep = base_file_system_rep
+
+        self.base_file_system_rep = base_file_system_rep or self.name
         self.data_type = data_type
+
         if file_ext is None:
             file_ext = self.get_file_ext_from_data_type()
         self.file_ext = file_ext
