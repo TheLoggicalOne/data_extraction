@@ -23,9 +23,8 @@ class ContentType:
         return NAMING_EXT_CONVENTIONS[naming_convention_key](base_fs_name, *args, **kwargs)
 
     def get_file_ext_from_data_type(self, dtype=None):
-        if dtype is None:
-            dtype = self.data_type
-        return FILE_EXT_OF_DTYPES[dtype]
+        final_dtype = dtype or self.data_type
+        return FILE_EXT_OF_DTYPES[final_dtype]
 
 
 FILE_EXT_OF_DTYPES = {'text': '.txt', 'html': '.html'}
