@@ -24,10 +24,10 @@ class ContentType:
 
     def get_file_ext_from_data_format(self, dformat=None):
         final_dformat = dformat or self.data_format
-        return FILE_EXT_OF_DTYPES[final_dformat]
+        return FILE_EXT_OF_DFORMAT[final_dformat]
 
 
-FILE_EXT_OF_DTYPES = {'text': '.txt', 'html': '.html'}
+FILE_EXT_OF_DFORMAT = {'text': '.txt', 'html': '.html'}
 NAMING_EXT_CONVENTIONS = {'standard_from_start_to_end': lambda name, start_, end_: '_'.join([name, 'from', start_,
                                                                                              'to', end_])
                           }
