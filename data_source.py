@@ -84,6 +84,11 @@ class DataSource:
                 print(f'Error type: "{type(error)}"')
                 print(f'Complete the source type "{self.source_type}" in source_type.py module by creating SourceType')
 
+    def get_DataSource_data_base_path(self, path_config: data_path_manager.PathConfig = None):
+        path_ = os.path.join(path_config.project_root_path_abs,
+                             self.data_dir_name,)
+        return path_
+
     def get_data_path(self, content_type=None,  path_config: data_path_manager.PathConfig = None,
                       data_type_override=None,
                       data_file_name_override=None, data_file_ext_override=None):
