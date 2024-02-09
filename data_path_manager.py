@@ -32,7 +32,7 @@ class PathConfig:
         #     self.dir_name_of_data_type_dict = {x: x + '_Data' for x in self.data_types}
         # else:
         #     self.dir_name_of_data_type_dict = dir_name_of_data_type_dict
-        self.dir_name_of_data_type_dict = dir_name_of_data_type_dict or {x: x + '_Data' for x in self.data_types}
+        self.dir_name_of_data_type_dict = dir_name_of_data_type_dict or {x: 'Data_' + x for x in self.data_types}
         self.structure = structure
         self.data_base_root_path_rel = data_base_root_path_rel
         if self.structure == 'STANDARD_TREE':
