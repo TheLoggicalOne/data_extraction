@@ -1,3 +1,10 @@
+"""
+For managing directory structure and path of files and directories, specially data related ones, in the whole project.
+
+Might even go as far as some naming convention related to data directories based on data type(or better, data state:
+ Raw, Processed, Final...)
+ To Decide: should we move latter naming convention to data_source module?
+"""
 import os
 
 PROJECT_ROOT_NAME = 'data_extraction'
