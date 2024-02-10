@@ -1,3 +1,10 @@
+"""
+To describe and manage different kinds of file contents and their naming conventions
+currently neither of SourceType and DataSource holds this info, which kind of make sense since these could have more
+than one ContentType
+
+"""
+
 import datetime
 
 
@@ -28,9 +35,11 @@ class ContentType:
 
 
 FILE_EXT_OF_DFORMAT = {'text': '.txt', 'html': '.html'}
-NAMING_EXT_CONVENTIONS = {'standard_from_start_to_end': lambda name, start_, end_: '_'.join([name, 'from', start_,
+NAMING_EXT_CONVENTIONS = {'standard_from_start_to_end': lambda name_, start_, end_: '_'.join([name_, 'from', start_,
                                                                                              'to', end_])
                           }
+
+
 
 if __name__ == '__main__':
     ct = ContentType(name='whole_text_of_all_messages', data_format='text', file_ext='.txt')
