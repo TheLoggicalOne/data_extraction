@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="Black">
-    <option name="pathToExecutable" value="$USER_HOME$/.local/bin/black" />
-    <option name="sdkUUID" value="feb40f1c-63f6-4192-9343-2e66aaff139b" />
-  </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Py311Anaconda" project-jdk-type="Python SDK" />
-</project>
