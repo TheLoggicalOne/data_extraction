@@ -1,0 +1,30 @@
+# Ignore session files
+anon.session
+session_name.session
+
+# Ignore python cache
+__pycache__/
+*.pyc
+
+# Ignore IDE configuration files
+.idea/
+.vscode/
+
+# Ignore jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore playground directory (assuming it's for experimentation and not production code)
+playground/
+
+# Ignore pyenv version enforcer
+.python-version
+# Ignore virtual environment directory
+venv/
+env/
+
+# Ignore specific parts of the Data directory
+Data/Raw_Data/
+
+# Ignore any other unnecessary files
+*.log
+*.tmp
