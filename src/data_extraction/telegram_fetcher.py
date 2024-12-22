@@ -26,7 +26,7 @@ class TelegramFetcher:
         source_id = self.database.get_source_id(data_source.name)
         if not source_id:
             print(f"Adding new source: {data_source.name}")
-            self.database.add_source(data_source.name, data_source.channel_id, data_source.description)
+            self.database.save_source(data_source.name, data_source.channel_id, data_source.description)
             source_id = self.database.get_source_id(data_source.name)
 
         messages_fetched = 0

@@ -1,4 +1,5 @@
-# data_extraction/database.py
+# data_extraction/src/data_extraction/database.py
+# Question: Should we add messages to database in bulk instead of one by one? 
 import sqlite3
 
 class Database:
@@ -31,6 +32,7 @@ class Database:
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS messages (
                 id INTEGER PRIMARY KEY,
+                source_name TEXT,           
                 source_id INTEGER,
                 message_id INTEGER,
                 sender_id INTEGER,
@@ -72,17 +74,19 @@ class Database:
             result = cursor.fetchone()
             return result[0] if result else None
 
-    def save_message(self, source_id, message):
+    def save_message(self, message, source_name=None, source_id=None):
         """Save a message to the database."""
+        source_id = source_id or self.get_source_id(source_name)
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
             try:
                 cursor.execute("""
                 INSERT OR IGNORE INTO messages (
-                    source_id, message_id, sender_id, text, date,
+                    source_name, source_id, message_id, sender_id, text, date,
                     is_reply, reply_to, has_image, has_video, has_media, raw_data
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """, (
+                    source_name,
                     source_id,
                     message.id,
                     message.from_user.id if message.from_user else None,
