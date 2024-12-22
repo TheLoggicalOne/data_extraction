@@ -2,7 +2,7 @@ import json
 import os
 
 
-# we are assuming config.py is in ROOT_DIR/src/data_extraction and config.json is in ROOT_DIR
+# we are assuming config.py is in ROOT_DIR/src/data_extraction and config.json is(or should be) in ROOT_DIR
 # So we Get the root directory by navigating up from the current file's directory twice
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 
