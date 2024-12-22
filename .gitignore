@@ -1,10 +1,7 @@
 # Ignore creds
 config.json
 config.json.tmp
-src/data_extraction/config.json
-src/data_extraction/config.json.tmp
-*config.json
-*config.json.tmp
+
 # Ignore session files
 anon.session
 session_name.session
