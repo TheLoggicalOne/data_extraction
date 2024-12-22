@@ -15,9 +15,15 @@ class Database:
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS sources (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT UNIQUE,
-                channel_id TEXT UNIQUE,
-                description TEXT
+                name TEXT UNIQUE, NOT NULL,
+                type TEXT NOT NULL,           
+                identifier TEXT UNIQUE NOT NULL,
+                chat_id INTEGER UNIQUE NOT NULL,           
+                description TEXT,
+                status TEXT DEFAULT 'active',
+                metadata TEXT,
+                last_fetched TIMESTAMP,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP                                         
             )
             """)
 
@@ -42,15 +48,19 @@ class Database:
             """)
             conn.commit()
 
-    def add_source(self, name, channel_id, description=None):
-        """Add a new source to the sources table."""
+    def save_source(self, name, type_, identifier, chat_id=None, description=None):
+        """Save a data source to the database."""
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
-            cursor.execute("""
-            INSERT OR IGNORE INTO sources (name, channel_id, description) 
-            VALUES (?, ?, ?)
-            """, (name, channel_id, description))
-            conn.commit()
+            try:
+                cursor.execute("""
+                INSERT OR IGNORE INTO sources (
+                    name, type, identifier, chat_id, description
+                ) VALUES (?, ?, ?, ?, ?, ?)
+                """, (name, type_, identifier, chat_id, description))
+                conn.commit()
+            except sqlite3.Error as e:
+                print(f"Database error: {e}")
 
     def get_source_id(self, name):
         """Retrieve the source ID for a given name."""
