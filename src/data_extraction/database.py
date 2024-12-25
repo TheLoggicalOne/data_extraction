@@ -1,5 +1,8 @@
 # data_extraction/src/data_extraction/database.py
 # Question: Should we add messages to database in bulk instead of one by one? 
+# Question: Should we base sources on the chat_id instead of the source_id? yes, let do this!
+
+
 import sqlite3
 
 class Database:
@@ -27,7 +30,7 @@ class Database:
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP                                         
             )
             """)
-
+  
             # Create the messages table
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS messages (
