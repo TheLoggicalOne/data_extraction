@@ -42,3 +42,12 @@ definition
 
 - should we move this part to [README](/README.md) ?
 
+### Product Analysis
+The goal of Product Analysis is to explore, analyze, and document the problem space that the product  
+is aiming to address. This phase is about getting clarity on the why and the what of the product.  
+The final clean version of the what of product will goes into product_definition.md  
+
+Product analysis focuses on identifying the purpose, target audience, use cases, and initial feature  
+ideas. It’s about defining the problem space and gathering insights before any actual development   
+starts.
+
