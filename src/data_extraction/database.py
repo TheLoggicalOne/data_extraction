@@ -42,7 +42,7 @@ class Database:
                 text TEXT,
                 date TIMESTAMP,
                 is_reply BOOLEAN,
-                reply_to INTEGER,
+                reply_to INTEGER, 
                 has_image BOOLEAN,
                 has_video BOOLEAN,
                 has_media BOOLEAN,
