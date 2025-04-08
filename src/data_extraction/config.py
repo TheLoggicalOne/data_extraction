@@ -85,11 +85,13 @@ def save_configuration(config):
             os.remove(TEMP_CONFIG_FILE)
         raise
 
-# Example usage
-telegram_config = load_configuration(config_group="telegram")
-database_config = load_configuration(config_group="database")
-log_level = load_configuration(required_keys=["LOG_LEVEL"])["LOG_LEVEL"]
 
-print(f"Telegram API ID: {telegram_config['TELEGRAM_API_ID']}")
-print(f"Database URI: {database_config['DATABASE_URI']}")
-print(f"Log Level: {log_level}")
+if __name__ == "__main__":
+    # Example usage
+    telegram_config = load_configuration(config_group="telegram")
+    # database_config = load_configuration(config_group="database")
+    # log_level = load_configuration(required_keys=["LOG_LEVEL"])["LOG_LEVEL"]
+
+    print(f"Telegram API ID: {telegram_config['TELEGRAM_API_ID']}")
+    # print(f"Database URI: {database_config['DATABASE_URI']}")
+    # print(f"Log Level: {log_level}")
